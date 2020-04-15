@@ -21,18 +21,96 @@ window.innerWidth/window.innerHeight, 0.1, 1000);
       document.body.appendChild(renderer.domElement);
       camera.position.z = 200;
 
-      var light = new THREE.PointLight(0xffffff, 1, 1000);
-		light.position.set(50, 50, 50);
+      var light = new THREE.PointLight(0xFEF9E7, 1, 1000);
+		light.position.set(30, 70, 50);
 		scene.add(light);
+
+		var light2 = new THREE.PointLight(0xFEF9E7, 1, 1000);
+		light.position.set(70, 100, 30);
+		scene.add(light2);
+
+		var light3 = new THREE.PointLight(0xA9CCE3, 1, 1000);
+		light.position.set(70, -200, 90);
+		scene.add(light3);
+
+		var light4 = new THREE.PointLight(0xC0392B, 1, 1000);
+		light.position.set(70, 300, 300);
+		scene.add(light4);
+
+		var light5 = new THREE.PointLight(0xFF0000, 1, 1000);
+		light.position.set(-500, 200, 200);
+		scene.add(light5);
+
+		var light6 = new THREE.PointLight(0x0800FF, 4, -200);
+		light.position.set(200, -200, 200);
+		scene.add(light6);
 
 		var loader = new THREE.GLTFLoader();
 		loader.load('dog.glb', function (gltf) {
 			scene.add(gltf.scene);
+
+			gltf.scene.position.x = 100;
+			gltf.scene.position.y = -40;
+			gltf.scene.rotation.y = 200;
+			gltf.scene.rotation.x = 0.1;
+			gltf.scene.scale.x = 2;
+			gltf.scene.scale.y = 2;
+			gltf.scene.scale.z = 2;
+
 		}, function (xhr) {
 			console.log((xhr.loaded / xhr.total * 100) + '% loaded' );
 		}, function (error) {
 			console.error(error);
 		});
+
+		loader.load('chair.glb', function (gltf) {
+			scene.add(gltf.scene);
+
+			gltf.scene.position.x = -200;
+			gltf.scene.rotation.y = 240;
+			gltf.scene.scale.x = 70.3;
+			gltf.scene.scale.y = 70.3;
+			gltf.scene.scale.z = 70.3;
+
+		}, function (xhr) {
+			console.log((xhr.loaded / xhr.total * 100) + '% loaded' );
+		}, function (error) {
+			console.error(error);
+		});
+
+		loader.load('cat.glb', function (gltf) {
+			scene.add(gltf.scene);
+
+			gltf.scene.position.x = -120;
+			gltf.scene.position.y = 40;
+			gltf.scene.rotation.y = 240;
+			gltf.scene.scale.x = 1.4;
+			gltf.scene.scale.y = 1.4;
+			gltf.scene.scale.z = 1.4;
+
+		}, function (xhr) {
+			console.log((xhr.loaded / xhr.total * 100) + '% loaded' );
+		}, function (error) {
+			console.error(error);
+		});
+
+		loader.load('cup.glb', function (gltf) {
+			scene.add(gltf.scene);
+
+			gltf.scene.position.x = -70;
+			gltf.scene.position.y = -10;
+			gltf.scene.rotation.y = 90;
+			gltf.scene.rotation.z = 90;
+			gltf.scene.scale.x = 2;
+			gltf.scene.scale.y = 2;
+			gltf.scene.scale.z = 2;
+
+		}, function (xhr) {
+			console.log((xhr.loaded / xhr.total * 100) + '% loaded' );
+		}, function (error) {
+			console.error(error);
+		});
+
 
 		function animate() {
 			requestAnimationFrame(animate);

@@ -13,24 +13,50 @@
 		<script>
 			// setup the scene
       			var scene = new THREE.Scene();
-      			var camera = new THREE.PerspectiveCamera(75, 
-window.innerWidth/window.innerHeight, 0.1, 1000);
+      			var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
       			var renderer = new THREE.WebGLRenderer();
       			renderer.setSize(window.innerWidth, window.innerHeight);
       			document.body.appendChild(renderer.domElement);
 			camera.position.z = 5;
 			
 			// setup the cube
-var geometry = new THREE.BoxGeometry();
-      			var material = new THREE.MeshPhongMaterial( { color: 0xdddddd, 
-specular: 0x00ff00, shininess: 30 });
+				var geometry = new THREE.BoxGeometry();
+      			var material = new THREE.MeshLambertMaterial( { color: 0x666666, emissive: 0xff0000 } );
       			var cube = new THREE.Mesh( geometry, material );
      			scene.add(cube);
+
+     			var geometry2 = new THREE.BoxGeometry();
+      			var material2 = new THREE.MeshNormalMaterial( { flatShading: true } );
+      			var cube2 = new THREE.Mesh( geometry2, material2 );
+     			scene.add(cube2);
 
 			// add the light
 			var light = new THREE.PointLight(0xffffff, 1, 1000);
 			light.position.set(10, 10, 10);
 			scene.add(light);
+
+var geometry1, material1, mesh1;
+
+	function addCoolCube() {
+		if(count == 2) {
+			let uniforms = {
+		colorB: {type: 'vec3', value: new THREE.Color(0xACB6E5)},
+		colorA: {type: 'vec3', value: new THREE.Color(0x74ebd5)}
+	 };
+
+
+			geometry1 = new THREE.BoxGeometry(1, 1, 1);
+			material1 =  new THREE.ShaderMaterial({
+			uniforms: uniforms,
+			fragmentShader: fshader,
+			vertexShader: vshader,
+			precision: "mediump"});
+
+			mesh1 = new THREE.Mesh(geometry1, material1);
+			mesh1.position.x = 2;
+			scene.add(mesh1);
+	}	
+}
 
 			THREE.Cache.enabled = true;
 			var count = 0;
@@ -43,7 +69,7 @@ specular: 0x00ff00, shininess: 30 });
 				console.log(data); // output the text to the console
 				vshader = data;
 				count += 1;
-			//addCoolCube(); // we will write this method
+			addCoolCube(); // we will write this method
 			},
 // onProgress callback
 			function (xhr) {
@@ -60,7 +86,7 @@ specular: 0x00ff00, shininess: 30 });
 				console.log(data); // output the text to the console
 				fshader = data;
 				count += 1;
-			//addCoolCube(); // we will write this method
+			addCoolCube(); // we will write this method
 			},
 // onProgress callback
 			function (xhr) {
@@ -71,16 +97,22 @@ specular: 0x00ff00, shininess: 30 });
 				console.error('An error happened');
 			});
 
-
+			geometry2.translate(-2,0,0);
 
 			function animate() {
 				requestAnimationFrame(animate);
 				geometry.rotateX(0.01);
 				geometry.rotateY(0.01);
+				geometry2.rotateZ(-0.01);
+				geometry2.rotateX(-0.01);
+				if(geometry1) {
+					geometry1.rotateX(0.01);
+					geometry1.rotateY(0.01);
+				}
+
 				renderer.render(scene, camera);
 			}
 			animate();
-
 
 		</script>
 	</body>

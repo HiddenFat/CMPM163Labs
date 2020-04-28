@@ -18,5 +18,7 @@ Forth cube is created with the loader function and 156.jpg.
 It's using the vertexShader and fragmentShader.
 
 Then I made the fifth cube with another loader function and seperate vshader and fragshader with 191.jpg.
+I modified the vertexShader by changing vUv = uv to vUv = uv * 3.0 to tile the texture by 3x3
+Then I modified the fragmentShader's texure2D vertex2 to mod(vUv,0.5) which covered the whole surface.
 
-G Drive Video: https://drive.google.com/file/d/1fgvUF1TqHbIP80S4yZ5QUKeBJNxqaGjg/view?usp=sharing
+G Drive Video: https://drive.google.com/file/d/1RPB2T9VA0qLvPSsWNvkWg8fhyOx_EdR_/view?usp=sharing

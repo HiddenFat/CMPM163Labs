@@ -18,3 +18,5 @@ Forth cube is created with the loader function and 156.jpg.
 It's using the vertexShader and fragmentShader.
 
 Then I made the fifth cube with another loader function and seperate vshader and fragshader with 191.jpg.
+
+G Drive Video: https://drive.google.com/file/d/1fgvUF1TqHbIP80S4yZ5QUKeBJNxqaGjg/view?usp=sharing

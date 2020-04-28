@@ -76,7 +76,7 @@
     }
     function addTextureShaderCube2() {
       if(count2 == 2) {
-        var uniforms2 = {texture5: { type: "t", value: THREE.ImageUtils.loadTexture("191.jpg")}};
+        var uniforms2 = {texture1: { type: "t", value: THREE.ImageUtils.loadTexture("191.jpg")}};
 
         geometry5 = new THREE.BoxGeometry(1, 1, 1);
         material5 =  new THREE.ShaderMaterial({
@@ -98,7 +98,9 @@
       var count = 0;
       var count2 = 0;
       var loader = new THREE.FileLoader();
+      var loader2 = new THREE.FileLoader();
       var fshader, vshader;
+      var fshader2, vshader2;
 
             	loader.load('shaders/vertexShader.vert',
             		// onLoad callback
@@ -135,7 +137,7 @@
             		});
 
 
-                loader.load('shaders/vertexShader2.vert',
+                loader2.load('shaders/vertexShader2.vert',
                   // onLoad callback
                   function (data) {
                     console.log(data); // output the text to the console
@@ -152,7 +154,7 @@
                     console.error('An error happened');
                   });
 
-                loader.load('shaders/fragmentShader2.frag',
+                loader2.load('shaders/fragmentShader2.frag',
                   // onLoad callback
                   function (data) {
                     console.log(data); // output the text to the console
